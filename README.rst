@@ -2,9 +2,8 @@
 nbblack
 =======
 
-
-.. image:: https://img.shields.io/pypi/v/nbblack.svg
-        :target: https://pypi.python.org/pypi/nbblack
+.. image:: https://img.shields.io/badge/recipe-nbblack-green.svg
+        :target: https://anaconda.org/conda-forge/nbblack
 
 .. image:: https://img.shields.io/travis/mcflugen/nbblack.svg
         :target: https://travis-ci.org/mcflugen/nbblack
@@ -13,12 +12,9 @@ nbblack
         :target: https://nbblack.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
-
-.. image:: https://pyup.io/repos/github/mcflugen/nbblack/shield.svg
-     :target: https://pyup.io/repos/github/mcflugen/nbblack/
-     :alt: Updates
-
-
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+        :target: https://github.com/csdms/pymt
+        :alt: Code style: black
 
 Apply the uncompromising Python code formatter to a Jupyter notebook
 
