@@ -9,8 +9,8 @@ import click
 import nbformat
 
 from . import __version__
-from .nbblack import blacken_notebook_contents
 from .errors import NotPythonNotebookError
+from .nbblack import blacken_notebook_contents
 
 DEFAULT_INCLUDE = r"(\.ipynb$)"
 DEFAULT_EXCLUDE = r"(\.git$|\.ipynb_checkpoints)"
@@ -21,9 +21,7 @@ def collect_sources(srcs, include, exclude):
     for s in srcs:
         p = Path(s)
         if p.is_dir():
-            sources.update(
-                iter_files_in_dir(p, "/", include, exclude)
-            )
+            sources.update(iter_files_in_dir(p, "/", include, exclude))
         elif p.is_file():
             sources.add(p)
 
@@ -44,6 +42,8 @@ def iter_files_in_dir(path, root, include, exclude):
         elif p.is_file():
             if include.search(normalized_path):
                 yield p
+
+
 @click.option(
     "-q",
     "--quiet",
@@ -99,7 +99,9 @@ def iter_files_in_dir(path, root, include, exclude):
     ),
     show_default=True,
 )
-@click.option("--collect-only", is_flag=True, help="Only collect notebooks, don't format them")
+@click.option(
+    "--collect-only", is_flag=True, help="Only collect notebooks, don't format them"
+)
 @click.argument(
     "src",
     nargs=-1,
@@ -112,12 +114,20 @@ def main(ctx, src, collect_only, in_place, include, exclude, quiet, verbose):
     try:
         include_regex = re.compile(include)
     except re.error:
-        click.secho(f"Invalid regular expression for include given: {include!r}", fg="red", err=True)
+        click.secho(
+            f"Invalid regular expression for include given: {include!r}",
+            fg="red",
+            err=True,
+        )
         ctx.exit(1)
     try:
         exclude_regex = re.compile(exclude)
     except re.error:
-        click.secho(f"Invalid regular expression for exclude given: {exclude!r}", fg="red", err=True)
+        click.secho(
+            f"Invalid regular expression for exclude given: {exclude!r}",
+            fg="red",
+            err=True,
+        )
         ctx.exit(1)
 
     backup_ext = None
